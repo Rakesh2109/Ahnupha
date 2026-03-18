@@ -6,30 +6,40 @@ Your app is a **Vite + React** SPA. Hostinger runs a **Node process** — this r
 
 **Yes**, if you:
 
-1. **Build** before (or during) deploy so `dist/` exists.
-2. **Start** with `npm start` (runs `node server.js`).
+1. **Build** — set **Build** to `npm run build` in the panel (recommended). If Hostinger skips it, **`npm start` runs a build automatically** when `dist/` is missing (Vite is in `dependencies` so this works even with production-only install).
+2. **Start** with `npm start` (ensures `dist/` then runs `node server.js`).
 3. Set **environment variables for the build** (Vite bakes `VITE_*` into JS at build time — not at runtime).
 
-## Hostinger settings (typical)
+## Hostinger panel — use these
+
+| Field | Choose |
+|--------|--------|
+| **Framework preset** | **Express** (matches `server.js` + `npm start`) |
+| **Branch** | **main** |
+| **Node version** | **20.x** (or **18.x** if 20 isn’t listed — both work) |
+
+Then set commands if the preset doesn’t fill them automatically:
 
 | Setting | Value |
 |--------|--------|
-| **Node version** | 18.x or 20.x |
-| **Install command** | `npm ci` or `npm install` |
-| **Build command** | `npm run build` |
-| **Start command** | `npm start` |
-| **Port** | Hostinger sets `PORT` automatically — the server uses it. |
+| **Install** | `npm ci` or `npm install` |
+| **Build** | `npm run build` |
+| **Start** | `npm start` |
+| **Port** | Leave default — Hostinger sets `PORT`; the app reads it. |
 
-## Environment variables (build time)
+## Environment variables (required on Hostinger)
 
-Add these in Hostinger **before/during build** (names must start with `VITE_`):
+If the panel shows **None**, add **all three** below. Vite only reads them when **`npm run build`** runs — set them **before** the first deploy (or redeploy after adding).
 
-- `VITE_SITE_URL` — `https://yourdomain.com` (SEO canonicals / Open Graph)
-- `VITE_SUPABASE_URL` — your Supabase project URL  
-- `VITE_SUPABASE_ANON_KEY` — your anon key  
-- Any other `VITE_*` your app uses
+| Name | Example / where to get it |
+|------|---------------------------|
+| `VITE_SITE_URL` | `https://ahnupha.com` — your **real live site URL** (no `/` at end). SEO + auth redirects. |
+| `VITE_SUPABASE_URL` | Supabase → **Project Settings → API → Project URL** |
+| `VITE_SUPABASE_ANON_KEY` | Supabase → **Project Settings → API → anon public** key |
 
-After changing env vars, **run a new build**.
+**If you leave them empty:** the app still runs using built-in defaults (your current Supabase project + ahnupha.com), but you should set them in Hostinger so **your domain** and **keys** are explicit and you can change projects later without editing code.
+
+After any change to these vars → trigger a **new build** (redeploy).
 
 ## GitHub deploy
 
