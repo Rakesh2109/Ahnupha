@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Heart, Users, Award, Sparkles, ShieldCheck, Home as HomeIcon, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -73,10 +73,11 @@ const AboutUs = () => {
   ];
 
   return <>
-    <Helmet>
-      <title>About Us - AHNUPHA</title>
-      <meta name="description" content="Learn about AHNUPHA's story, our passion for handmade craftsmanship, commitment to quality, and dedication to bringing you unique products across India." />
-    </Helmet>
+    <SEO
+      title="About Ahnupha — Handcrafted Chocolates & Snacks"
+      description="Ahnupha Bites: handmade chocolates and snacks from Suryapet, Telangana. Premium ingredients, personalisation, Pan India delivery, free delivery in 508213."
+      path="/about"
+    />
 
     {/* ════════════════════════════════════════════════════════════════
         HERO — full-height cinematic

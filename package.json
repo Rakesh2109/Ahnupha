@@ -7,6 +7,7 @@
     "dev": "vite --host :: --port 3000",
     "build": "node tools/generate-llms.js || true && vite build",
     "preview": "vite preview --host :: --port 3000",
+    "start": "node server.js",
     "lint": "eslint . --quiet"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "@supabase/supabase-js": "^2.91.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "express": "^4.22.1",
     "framer-motion": "^11.15.0",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Truck, Instagram, MessageCircle, ShoppingBag, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
@@ -86,13 +86,11 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us - AHNUPHA</title>
-        <meta
-          name="description"
-          content="Get in touch with AHNUPHA. Contact us for inquiries about our handmade chocolates, delivery, or any other questions."
-        />
-      </Helmet>
+      <SEO
+        title="Contact Ahnupha — Chocolates, Orders & Delivery"
+        description="Contact Ahnupha for chocolate orders, delivery to Suryapet & Pan India, and custom gifting. WhatsApp, phone & email — we reply fast."
+        path="/contact"
+      />
 
       {/* ════════════════════════════════════════════════════════════════
           HERO — cinematic full-height

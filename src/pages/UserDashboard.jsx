@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { searchData } from '@/lib/searchData';
+import SEO from '@/components/SEO';
 
 // ===== ADMIN EMAIL - UPDATE WITH YOUR OWNER EMAIL =====
 const ADMIN_EMAIL = "info@ahnupha.com"; // Change this to your owner/admin email
@@ -1275,11 +1276,18 @@ const UserDashboard = () => {
   };
 
   if (loading) {
-    return <div className="min-h-[60vh] flex items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-rose-600" /></div>;
+    return (
+      <>
+        <SEO title="My account" description="Ahnupha account dashboard." path="/dashboard" noindex />
+        <div className="min-h-[60vh] flex items-center justify-center"><Loader2 className="h-8 w-8 animate-spin text-rose-600" /></div>
+      </>
+    );
   }
 
   if (showSetPassword && currentUser) {
     return (
+      <>
+        <SEO title="Account setup" description="Ahnupha account." path="/dashboard" noindex />
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1309,11 +1317,13 @@ const UserDashboard = () => {
           </form>
         </motion.div>
       </div>
+      </>
     );
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-amber-50/30 to-rose-50/50 py-4 sm:py-6 overflow-x-hidden">
+      <SEO title="My orders & account" description="View your Ahnupha orders and profile." path="/dashboard" noindex />
       <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
         <>
         <motion.div

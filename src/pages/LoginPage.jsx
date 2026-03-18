@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Loader2, Hash, Mail, Lock, CheckCircle2 } from 'lucide-react';
 import { validateEmail, sanitizeInput } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
@@ -175,6 +176,8 @@ const LoginPage = () => {
 
   if (showSetPassword && currentUser) {
     return (
+      <>
+        <SEO title="Create password" description="Set a password for your Ahnupha account." path="/login" noindex />
       <div className="min-h-[80vh] sm:min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-3 sm:px-4 py-6 sm:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -221,18 +224,24 @@ const LoginPage = () => {
           </form>
         </motion.div>
       </div>
+      </>
     );
   }
 
   if (showSetPassword && !currentUser) {
     return (
+      <>
+        <SEO title="Sign in" description="Ahnupha account sign-in." path="/login" noindex />
       <div className="min-h-[60vh] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-rose-500" />
       </div>
+      </>
     );
   }
 
   return (
+    <>
+      <SEO title="Sign in to Ahnupha" description="Log in to order handcrafted chocolates, track orders, and checkout faster." path="/login" noindex />
     <div className="min-h-[80vh] sm:min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-3 sm:px-4 py-6 sm:py-12 relative overflow-x-hidden">
       <div className="absolute top-20 right-20 w-32 h-32 bg-rose-200/20 rounded-full blur-2xl animate-pulse pointer-events-none" />
       <div className="absolute bottom-20 left-20 w-40 h-40 bg-amber-200/20 rounded-full blur-2xl animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
@@ -427,6 +436,7 @@ const LoginPage = () => {
         </AnimatePresence>
       </motion.div>
     </div>
+    </>
   );
 };
 

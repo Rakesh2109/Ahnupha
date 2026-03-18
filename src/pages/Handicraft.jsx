@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSupabaseAuth } from '@/context/SupabaseAuthContext';
 import { searchData } from '@/lib/searchData';
@@ -549,9 +549,7 @@ const Handicraft = () => {
   if (!isAdmin) {
     return (
       <>
-        <Helmet>
-          <title>Access Denied - Ahnupha</title>
-        </Helmet>
+        <SEO title="Admin only" description="Restricted area." path="/handicraft" noindex />
         <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-amber-50/30 to-rose-50/50 flex items-center justify-center p-4">
           <div className="bg-white p-8 rounded-xl shadow-lg border-2 border-rose-100/50 max-w-md text-center">
             <ShieldX className="w-16 h-16 text-rose-500 mx-auto mb-4" />
@@ -573,10 +571,7 @@ const Handicraft = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Manual Orders - Admin | Ahnupha</title>
-        <meta name="description" content="Admin dashboard to note and update orders from Instagram & WhatsApp." />
-      </Helmet>
+      <SEO title="Manual orders (admin)" description="Internal order tools for Ahnupha." path="/handicraft" noindex />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8 pb-[max(2rem,env(safe-area-inset-bottom))] min-h-[100dvh]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">

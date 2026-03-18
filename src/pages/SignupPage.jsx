@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useSupabaseAuth } from '@/context/SupabaseAuthContext';
 import { useToast } from '@/components/ui/use-toast';
 import { sanitizeInput, validateEmail, validateName } from '@/lib/utils';
+import SEO from '@/components/SEO';
 
 const SignupPage = () => {
   const [loading, setLoading] = useState(false);
@@ -87,6 +88,8 @@ const SignupPage = () => {
   };
 
   return (
+    <>
+      <SEO title="Create your Ahnupha account" description="Sign up to shop personalised chocolates and track orders." path="/signup" noindex />
     <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-4 py-12">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -172,6 +175,7 @@ const SignupPage = () => {
         </p>
       </motion.div>
     </div>
+    </>
   );
 };
 

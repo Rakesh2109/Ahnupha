@@ -9,7 +9,7 @@ import Layout from '@/components/Layout';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { Loader2, Shield, FileText, ShoppingBag, Plus, Minus, Trash2, Heart, Gift, Lock, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -217,6 +217,8 @@ const ResetPasswordPage = () => {
 
   if (isCheckingLink) {
     return (
+      <>
+        <SEO title="Reset password" description="Verify your Ahnupha account password reset link." path="/reset-password" noindex />
       <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-4 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -228,11 +230,14 @@ const ResetPasswordPage = () => {
           <p className="text-gray-600">Please wait while we verify your password reset link.</p>
         </motion.div>
       </div>
+      </>
     );
   }
 
   if (!isValidLink) {
     return (
+      <>
+        <SEO title="Invalid reset link" description="Request a new password reset for your Ahnupha account." path="/reset-password" noindex />
       <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-4 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -254,10 +259,13 @@ const ResetPasswordPage = () => {
           </Button>
         </motion.div>
       </div>
+      </>
     );
   }
 
   return (
+    <>
+      <SEO title="Set new password" description="Create a new password for your Ahnupha account." path="/reset-password" noindex />
     <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 via-rose-50/20 to-amber-50/20 px-4 py-12 relative overflow-hidden">
       {/* Decorative floating elements */}
       <div className="absolute top-20 right-20 w-32 h-32 bg-rose-200/20 rounded-full blur-2xl animate-pulse"></div>
@@ -389,6 +397,7 @@ const ResetPasswordPage = () => {
         </form>
       </motion.div>
     </div>
+    </>
   );
 };
 
@@ -524,10 +533,11 @@ const PageLoader = () => (
 // Privacy Policy Page (inline component)
 const PrivacyPolicy = () => (
   <>
-    <Helmet>
-      <title>Privacy Policy - Ahnupha</title>
-      <meta name="description" content="Ahnupha Privacy Policy - Learn how we collect, use, and protect your personal information." />
-    </Helmet>
+    <SEO
+      title="Privacy Policy"
+      description="How Ahnupha collects, uses, and protects your data when you shop handcrafted chocolates and use our website."
+      path="/privacy-policy"
+    />
     <div className="min-h-screen bg-gradient-to-br from-rose-50/50 to-amber-50/50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-rose-100/50">
@@ -794,10 +804,12 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Shopping Cart - Ahnupha</title>
-        <meta name="description" content="Review your cart items and proceed to checkout" />
-      </Helmet>
+      <SEO
+        title="Shopping Cart"
+        description="Your Ahnupha cart — review chocolates and snacks before checkout."
+        path="/cart"
+        noindex
+      />
       <div className="min-h-screen bg-gray-50 py-4 sm:py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -1063,10 +1075,11 @@ const ShoppingCart = () => {
 // Terms of Service Page (inline component)
 const TermsOfService = () => (
   <>
-    <Helmet>
-      <title>Terms of Service - Ahnupha</title>
-      <meta name="description" content="Ahnupha Terms of Service - Read our terms and conditions for using our website and services." />
-    </Helmet>
+    <SEO
+      title="Terms of Service"
+      description="Ahnupha terms: online payment, shipping Suryapet & India, no returns on chocolates. Read before you order."
+      path="/terms-of-service"
+    />
     <div className="min-h-screen bg-gradient-to-br from-rose-50/50 to-amber-50/50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-2 border-rose-100/50">

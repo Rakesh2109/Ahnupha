@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Truck, ShoppingBag, Lock, Store, MapPin, Phone, CheckCircle2, Sparkles, Heart, ArrowRight, Loader2, Tag, X, Gift, Info, HelpCircle, AlertCircle, Calendar, Clock, ChevronDown } from 'lucide-react';
@@ -1408,9 +1408,7 @@ const Checkout = () => {
   if (orderSuccess) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-amber-50/30 to-rose-50/50 flex items-center justify-center p-4">
-        <Helmet>
-          <title>Order Confirmed - Ahnupha</title>
-        </Helmet>
+        <SEO title="Order confirmed" description="Thank you for your Ahnupha order." path="/checkout" noindex />
         
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -1551,9 +1549,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-amber-50/30 to-rose-50/50 py-12">
-      <Helmet>
-        <title>Checkout - Ahnupha</title>
-      </Helmet>
+      <SEO title="Checkout" description="Complete your Ahnupha chocolate order with secure payment." path="/checkout" noindex />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import SEO, { getHomeJsonLd } from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSupabaseAuth } from '@/context/SupabaseAuthContext';
@@ -70,10 +70,12 @@ const Home = () => {
   ];
 
   return <>
-    <Helmet>
-      <title>Ahnupha | Handmade Chocolates</title>
-      <meta name="description" content="Welcome to Ahnupha. Discover premium handcrafted chocolates and truffles. Free delivery for pincode 508213; ₹100 shipping charge for other pincodes." />
-    </Helmet>
+    <SEO
+      title="Ahnupha | Handmade Personalised Chocolates & Snacks"
+      description="Handcrafted chocolates, Kunafa bars, gift boxes & personalised chocolate bars. Homemade snacks. Pan India delivery — free in Suryapet 508213. Order at Ahnupha."
+      path="/"
+      jsonLd={getHomeJsonLd()}
+    />
 
     {/* ════════════════════════════════════════════════════════════════
         HERO — cinematic full-height split screen

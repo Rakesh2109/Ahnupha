@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Do not index auth, cart, or checkout (thin / private pages)
+Disallow: /login
+Disallow: /signup
+Disallow: /reset-password
+Disallow: /cart
+Disallow: /checkout
+Disallow: /dashboard
+Disallow: /handicraft
+
+Sitemap: https://ahnupha.com/sitemap.xml

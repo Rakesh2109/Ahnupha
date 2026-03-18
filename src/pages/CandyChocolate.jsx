@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
+import { getSiteUrl } from '@/lib/siteConfig';
 import { motion } from 'framer-motion';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Star, ShoppingCart, Heart, Info, X, MessageSquare, Send, Loader2, Plus, Minus, ArrowRight, ArrowUp, PenLine, CheckCircle2, Truck, Share2, Gift, Package, Phone } from 'lucide-react';
@@ -531,17 +533,73 @@ CREATE INDEX IF NOT EXISTS idx_product_reviews_user_id ON product_reviews(user_i
       }
     }
   };
-  
+
+  const candySeo = useMemo(() => {
+    const base = getSiteUrl();
+    if (selectedProduct) {
+      const raw = (selectedProduct.description || '').split('\n').filter(Boolean)[0] || selectedProduct.title;
+      const plain = raw.replace(/\s+/g, ' ').trim().slice(0, 156);
+      const desc =
+        plain.length > 24
+          ? `${plain}… Shop Ahnupha — handcrafted chocolate, India delivery.`
+          : `Buy ${selectedProduct.title} online at Ahnupha. Handcrafted chocolates, free delivery 508213, Pan India.`;
+      const path = `/candy-chocolate?product=${encodeURIComponent(selectedProduct.id)}`;
+      const img =
+        (selectedProduct.images && selectedProduct.images[selectedImageIndex]) ||
+        selectedProduct.image;
+      const canonical = `${base}${path}`;
+      const ld = {
+        '@type': 'Product',
+        name: selectedProduct.title,
+        description: desc.slice(0, 500),
+        image: selectedProduct.images?.length ? selectedProduct.images : img ? [img] : [],
+        brand: { '@type': 'Brand', name: 'Ahnupha' },
+        sku: selectedProduct.id,
+      };
+      if (typeof selectedProduct.price === 'number' && selectedProduct.price > 0) {
+        ld.offers = {
+          '@type': 'Offer',
+          url: canonical,
+          priceCurrency: 'INR',
+          price: selectedProduct.price,
+          availability: 'https://schema.org/InStock',
+        };
+      }
+      return {
+        title: `${selectedProduct.title} — Buy Online`,
+        description: desc.slice(0, 160),
+        path,
+        image: img,
+        type: 'website',
+        jsonLd: ld,
+      };
+    }
+    return {
+      title: 'Premium Chocolates Shop',
+      description:
+        'Handcrafted chocolates, Kunafa bars, truffles & gift boxes. Free delivery pincode 508213; ₹100 outside Suryapet. Order from Ahnupha Bites.',
+      path: '/candy-chocolate',
+      image: undefined,
+      type: 'website',
+      jsonLd: null,
+    };
+  }, [selectedProduct, selectedImageIndex]);
+
   return (
     <>
-      <Helmet>
-        <title>Premium Chocolates - Ahnupha</title>
-        <meta name="description" content="Discover our premium selection of handcrafted chocolates, truffles, and bars. We're pleased to offer free delivery for pincode 508213; a nominal ₹100 shipping charge applies to other pincodes." />
-        {/* Only preload first product image if it's likely to be viewed */}
-        {products.length > 0 && !selectedProduct && (
-          <link rel="preload" as="image" href={products[0].image} fetchpriority="high" />
-        )}
-      </Helmet>
+      <SEO
+        title={candySeo.title}
+        description={candySeo.description}
+        path={candySeo.path}
+        image={candySeo.image}
+        type={candySeo.type}
+        jsonLd={candySeo.jsonLd}
+      />
+      {products.length > 0 && !selectedProduct && (
+        <Helmet>
+          <link rel="preload" as="image" href={products[0].image} fetchPriority="high" />
+        </Helmet>
+      )}
 
       <div className="min-h-screen bg-gradient-to-br from-rose-50/50 via-amber-50/30 to-rose-50/50 relative overflow-hidden">
         {/* Decorative background elements */}

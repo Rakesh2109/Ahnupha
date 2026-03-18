@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { searchData } from '@/lib/searchData';
 import ProductCard from '@/components/ProductCard';
@@ -9,10 +9,11 @@ const HomemadeFood = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Snacks - Ahnupha</title>
-        <meta name="description" content="Taste the love in our snacks collection. Dry fruit laddus, homemade treats and more." />
-      </Helmet>
+      <SEO
+        title="Homemade Snacks — Dry Fruit Laddu & More"
+        description="Homemade snacks by Ahnupha: dry fruit laddu in 150g–450g packs, premium ingredients. Delivered across India with care."
+        path="/snacks"
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-white via-rose-50/30 to-amber-50/30">
         <div className="max-w-7xl mx-auto pt-8 pb-16 md:pt-12 md:pb-20">

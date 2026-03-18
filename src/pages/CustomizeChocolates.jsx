@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -297,10 +297,11 @@ const CustomizeChocolates = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Customize Your Chocolate — AHNUPHA</title>
-        <meta name="description" content="Design your perfect personalised chocolate bar at Ahnupha. Add your name, a message, choose dark or milk base, and pick dry fruit toppings. Premium handmade custom chocolates delivered across India." />
-      </Helmet>
+      <SEO
+        title="Customize Your Chocolate Bar — Names, Messages & Dry Fruits"
+        description="Design personalised chocolate bars at Ahnupha: your name, couples names, custom text, dark or milk chocolate, dry fruit toppings. Handmade in India — Pan India delivery."
+        path="/customize"
+      />
 
       {/* ══════════════════════════════════════════════════════════════
           HERO — cinematic full-height split
